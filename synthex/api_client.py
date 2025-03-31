@@ -2,9 +2,38 @@ import requests
 from typing import Optional, Any
 
 from .config import config
+from .consts import PING_ENDPOINT
 
 
 class APIClient:
+    """
+    A utility class for interacting with a RESTful API. It provides methods for sending HTTP 
+    requests to specified endpoints, handling errors, and managing authentication headers.
+    Attributes:
+        BASE_URL (str): The base URL of the API, retrieved from the configuration.
+        API_KEY (str): The API key used for authentication.
+        session (requests.Session): A persistent session object for making HTTP requests.
+    Methods:
+        __init__(api_key: str): 
+            Initializes the APIClient with the provided API key and sets up the session headers.
+        _handle_errors(response: requests.Response) -> None:
+            Handles HTTP errors in the API response. Raises an HTTPError for non-2xx status codes.
+        get(endpoint: str, params: Optional[dict[str, Any]] = None) -> dict[str, Any]:
+            Sends a GET request to the specified endpoint with optional query parameters and 
+            returns the JSON response.
+        post(endpoint: str, data: Optional[dict[str, Any]] = None) -> dict[str, Any]:
+            Sends a POST request to the specified endpoint with the provided data and returns the 
+            JSON response.
+        put(endpoint: str, data: Optional[dict[str, Any]] = None) -> dict[str, Any]:
+            Sends a PUT request to the specified endpoint with the provided data and returns the 
+            JSON response.
+        delete(endpoint: str) -> bool: 
+            Sends a DELETE request to the specified endpoint and returns True if successful.
+        ping() -> bool: 
+            Sends a ping request to the server to check connectivity. Returns True if successful,
+            False otherwise.
+    """
+    
     BASE_URL = config.API_BASE_URL
     
     def __init__(self, api_key: str):
@@ -102,4 +131,18 @@ class APIClient:
         url = f"{self.BASE_URL}/{endpoint}".rstrip("/")
         response = self.session.delete(url)
         self._handle_errors(response)
-        return response.status_code == 204
+        return response.status_code == 200
+    
+    
+    def ping(self) -> bool:
+        """
+        Sends a ping request to the server to check connectivity.
+        Returns:
+            bool: True if the ping request is successful, False otherwise.
+        """
+        
+        try:
+            self.get(PING_ENDPOINT)
+            return True
+        except Exception:
+            return False

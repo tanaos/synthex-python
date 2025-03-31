@@ -1,20 +1,28 @@
 from .api_client import APIClient
-from .consts import PING_ENDPOINT
+from .jobs_api import JobsAPI
 
 
 class Synthex:
+    """
+    Synthex is a client library for interacting with the Synthex API.
+    Attributes:
+        jobs (JobsAPI): Provides access to job-related API operations.
+    Methods:
+        __init__(api_key: str):
+            Initializes the Synthex client with the provided API key.
+        ping() -> bool: Pings the Synthex API to check if it is reachable, returns True if 
+            reachable, False otherwise.
+    """
+    
     def __init__(self, api_key: str):
         self._client = APIClient(api_key)
+        self.jobs = JobsAPI(self._client)
         
     def ping(self) -> bool:
         """
-        Sends a ping request to the server to check connectivity.
+        Pings the Synthex API to check if it is reachable.
         Returns:
-            bool: True if the ping request is successful, False otherwise.
+            bool: True if the API is reachable, False otherwise.
         """
         
-        try:
-            self._client.get(PING_ENDPOINT)
-            return True
-        except Exception:
-            return False
+        return self._client.ping()

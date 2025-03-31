@@ -10,7 +10,7 @@ def test_ping(synthex: Synthex):
     Args:
         synthex (Synthex): An instance of the Synthex class to be tested.
     Asserts:
-        The ping method of the api_client returns Truesd.
+        The ping method of the api_client returns True.
     """
     
     assert synthex.ping() is True
