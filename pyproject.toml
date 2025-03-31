@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synthex"
+version = "0.0.1"
+description = "Tanos synthex library"
+authors = [
+    { name = "Riccardo Lucato", email = "riccardo@tanaos.com" },
+    { name = "Saurabh Pradhan" }
+]
+license = { text = "MIT" }
+dependencies = [
+
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["synthex*"]
