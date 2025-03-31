@@ -1,7 +1,8 @@
 import requests
 from typing import Optional, Any
 
-from synthex.config import config
+from .config import config
+from .consts import PING_ENDPOINT
 
 
 class APIClient:
@@ -105,6 +106,7 @@ class APIClient:
                 response=response
             )
         
+    # -------------- Public API Methods --------------
         
     def ping(self) -> bool:
         """
@@ -112,7 +114,7 @@ class APIClient:
         Returns True if the server responds with status code 200, False otherwise.
         """
         try:
-            self._get("/")
+            self._get(PING_ENDPOINT)
             return True
         except Exception:
             return False
