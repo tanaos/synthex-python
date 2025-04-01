@@ -1,8 +1,7 @@
 import requests
 from typing import Optional, Any
 
-from .config import config
-from .consts import PING_ENDPOINT
+from .consts import API_BASE_URL, PING_ENDPOINT
 from .models import SuccessResponse
 from .exceptions import *
 
@@ -12,7 +11,7 @@ class APIClient:
     A utility class for interacting with a RESTful API. It provides methods for sending HTTP 
     requests to specified endpoints, handling errors, and managing authentication headers.
     Attributes:
-        BASE_URL (str): The base URL of the API, retrieved from the configuration.
+        BASE_URL (str): The base URL of the API.
         API_KEY (str): The API key used for authentication.
         session (requests.Session): A persistent session object for making HTTP requests.
     Methods:
@@ -36,7 +35,7 @@ class APIClient:
             False otherwise.
     """
     
-    BASE_URL = config.API_BASE_URL
+    BASE_URL = API_BASE_URL
     
     def __init__(self, api_key: str):
         self.API_KEY = api_key
