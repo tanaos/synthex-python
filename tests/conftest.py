@@ -1,5 +1,3 @@
-# tests/conftest.py
-
 import pytest
 import os
 from dotenv import load_dotenv
@@ -8,6 +6,7 @@ from synthex import Synthex
 
 
 load_dotenv()
+
 
 @pytest.fixture(scope="session")
 def synthex() -> Synthex:

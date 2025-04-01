@@ -2,8 +2,7 @@ import responses
 import pytest
 
 from synthex import Synthex
-from synthex.config import config
-from synthex.consts import PING_ENDPOINT
+from synthex.consts import API_BASE_URL, PING_ENDPOINT
 
 
 @responses.activate
@@ -21,7 +20,7 @@ def test_ping_success(synthex: Synthex):
     
     responses.add(
         responses.GET,
-        f"{config.API_BASE_URL}{PING_ENDPOINT}",
+        f"{API_BASE_URL}{PING_ENDPOINT}",
         json={"message": "Success"},
         status=200
     )
@@ -41,7 +40,7 @@ def test_ping_failure(synthex: Synthex):
     
     responses.add(
         responses.GET,
-        f"{config.API_BASE_URL}{PING_ENDPOINT}",
+        f"{API_BASE_URL}{PING_ENDPOINT}",
         json={"message": "Failure"},
         status=500
     )
