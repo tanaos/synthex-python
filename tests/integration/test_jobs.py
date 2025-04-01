@@ -7,12 +7,16 @@ from synthex.models import UserResponseModel
 @pytest.mark.integration
 def test_get_current_user(synthex: Synthex):
     """
-    Test the me method of the UsersAPI to ensure it retrieves user information.
+    Test the `get_current_user` functionality of the Synthex client.
+    This test verifies that the `users.me()` method of the Synthex client
+    returns an object of type `UserResponseModel`.
     Args:
-        synthex (Synthex): An instance of the Synthex class to be tested.
-    Asserts:
-        The get_current_user method of the UsersAPI returns a UserResponseModel object.
+        synthex (Synthex): An instance of the Synthex client.
+    Assertions:
+        Asserts that the type of the object returned by `synthex.users.me()`
+        is `UserResponseModel`.
     """
+    
     
     user_info = synthex.users.me()
     

@@ -11,13 +11,14 @@ load_dotenv()
 @pytest.fixture(scope="session")
 def synthex() -> Synthex:
     """
-    Creates and returns an instance of the Synthex class using the API key retrieved from the 
-    environment variables.
-    Returns:
-        Synthex: An instance of the Synthex class initialized with the API key.
+    Creates and returns an instance of the Synthex class using the API key 
+    from the environment variables.
     Raises:
         pytest.fail: If the "API_KEY" environment variable is not set.
+    Returns:
+        Synthex: An instance of the Synthex class initialized with the API key.
     """
+    
             
     api_key = os.getenv("API_KEY")
     if not api_key:

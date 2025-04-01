@@ -9,14 +9,19 @@ from synthex.consts import API_BASE_URL, PING_ENDPOINT
 @pytest.mark.unit
 def test_ping_success(synthex: Synthex):
     """
-    Test the ping method of the Synthex class to ensure it successfully returns `True` when the 
-    API responds with a 200 status code and a success message.
-    Args:
-        synthex (Synthex): An instance of the Synthex class to be tested.
+    Test the `ping` method of the `Synthex` class to ensure it successfully
+    returns `True` when the API responds with a 200 status and a success message.
+    Steps:
+    1. Mock the API response for the ping endpoint with a 200 status and a JSON
+        payload containing a success message.
+    2. Call the `ping` method of the `Synthex` instance.
+    3. Assert that the method returns `True` indicating a successful ping.
     Assertions:
-        - Asserts that the ping method returns True when the API 
-          endpoint responds with a 200 status code and a success message.
+        - The ping method should return True when the API responds with a 200 status code.
+    Args:
+        synthex (Synthex): An instance of the Synthex class to test.
     """
+    
     
     responses.add(
         responses.GET,
@@ -32,11 +37,19 @@ def test_ping_success(synthex: Synthex):
 @pytest.mark.unit
 def test_ping_failure(synthex: Synthex):
     """
-    Test case for the ping method of the Synthex class to verify its behavior when the API 
-    responds with a failure.
+    Test the `ping` method of the `Synthex` class to ensure it handles failure scenarios correctly.
+    This test simulates a server failure by mocking a 500 Internal Server Error response
+    from the `PING_ENDPOINT`. It verifies that the `ping` method returns `False` when
+    the server is unreachable or returns an error status.
+    Args:
+        synthex (Synthex): An instance of the `Synthex` class to be tested.
+    Setup:
+        - Mock the HTTP GET request to the `PING_ENDPOINT` using the `responses` library.
+        - Configure the mock to return a 500 status code with a failure message.
     Assertions:
-        - The ping method should return False when the API responds with a 500 status code.
+        - Assert that the `ping` method returns `False` when the server responds with a 500 error.
     """
+    
     
     responses.add(
         responses.GET,
