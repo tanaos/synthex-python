@@ -19,7 +19,7 @@ def synthex() -> Synthex:
     Raises:
         pytest.fail: If the "API_KEY" environment variable is not set.
     """
-    
+            
     api_key = os.getenv("API_KEY")
     if not api_key:
         pytest.fail("API_KEY not found in environment variables")
