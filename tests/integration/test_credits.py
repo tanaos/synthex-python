@@ -16,7 +16,6 @@ def test_get_current_user(synthex: Synthex):
         The returned value from `synthex.credits.promotional()` is an instance of `CreditModel`.
     """
     
-    
     credits_info = synthex.credits.promotional()
         
     assert isinstance(credits_info, CreditModel)
