@@ -1,6 +1,7 @@
 from .api_client import APIClient
 from .jobs_api import JobsAPI
 from .users_api import UsersAPI
+from .credits_api import CreditsAPI
 
 
 class Synthex:
@@ -19,6 +20,7 @@ class Synthex:
         self._client = APIClient(api_key)
         self.jobs = JobsAPI(self._client)
         self.users = UsersAPI(self._client)
+        self.credits = CreditsAPI(self._client)
         
     def ping(self) -> bool:
         """
