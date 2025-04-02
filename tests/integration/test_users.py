@@ -5,9 +5,9 @@ from synthex.models import UserResponseModel
 
 
 @pytest.mark.integration
-def test_get_current_user(synthex: Synthex):
+def test_me(synthex: Synthex):
     """
-    Test the `get_current_user` functionality of the Synthex client.
+    Test the `me` functionality of the Synthex client.
     This test verifies that the `users.me()` method of the Synthex client
     returns an object of type `UserResponseModel`.
     Args:

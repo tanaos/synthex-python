@@ -5,9 +5,9 @@ from synthex.models import CreditModel
 
 
 @pytest.mark.integration
-def test_get_current_user(synthex: Synthex):
+def test_promotional(synthex: Synthex):
     """
-    Test the `get_current_user` functionality of the `Synthex` instance.
+    Test the `promotional` functionality of the `Synthex` instance.
     This test verifies that the `promotional` method of the `credits` attribute
     returns an object of type `CreditModel`.
     Args:
