@@ -7,3 +7,6 @@ GET_CURRENT_USER_ENDPOINT = "user"
 
 # Credits
 GET_PROMOTIONAL_CREDITS_ENDPOINT = "credits/promotional"
+
+# Jobs
+LIST_JOBS_ENDPOINT = "jobs"
