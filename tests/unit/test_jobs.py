@@ -8,8 +8,6 @@ from synthex.models import UserResponseModel
 from synthex.exceptions import NotFoundError, AuthenticationError
 
 
-endpoint = f"{API_BASE_URL}/{GET_CURRENT_USER_ENDPOINT}"
-
 @responses.activate
 def test_me_success(synthex: Synthex, ):
     """
@@ -35,7 +33,7 @@ def test_me_success(synthex: Synthex, ):
     
     responses.add(
         responses.GET,
-        endpoint,
+        f"{API_BASE_URL}/{GET_CURRENT_USER_ENDPOINT}",
         json={
             "status_code": 200,
             "status": "success",
@@ -83,7 +81,7 @@ def test_me_401_failure(synthex: Synthex):
     
     responses.add(
         responses.GET,
-        endpoint,
+        f"{API_BASE_URL}/{GET_CURRENT_USER_ENDPOINT}",
         json={"error": "unauthorized"},
         status=401
     )

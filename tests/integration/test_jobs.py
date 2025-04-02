@@ -19,4 +19,4 @@ def test_get_current_user(synthex: Synthex):
     
     user_info = synthex.users.me()
         
-    assert type(user_info) == UserResponseModel
+    assert isinstance(user_info, UserResponseModel)
