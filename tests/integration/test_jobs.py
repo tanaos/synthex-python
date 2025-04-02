@@ -17,9 +17,6 @@ def test_get_current_user(synthex: Synthex):
         is `UserResponseModel`.
     """
     
-    
     user_info = synthex.users.me()
-    
-    print("user info: ", type(user_info))
-    
+        
     assert type(user_info) == UserResponseModel

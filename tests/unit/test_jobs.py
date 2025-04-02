@@ -68,7 +68,7 @@ def test_me_success(synthex: Synthex, ):
     
     
 @responses.activate
-def test_me_raises_auth_error(synthex: Synthex):
+def test_me_401_failure(synthex: Synthex):
     """
     Test that the `me` method of the `users` module in the `Synthex` class
     raises an `AuthenticationError` when the API responds with a 401 
