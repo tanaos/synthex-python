@@ -10,3 +10,4 @@ GET_PROMOTIONAL_CREDITS_ENDPOINT = "credits/promotional"
 
 # Jobs
 LIST_JOBS_ENDPOINT = "jobs"
+API_JOB_ENDPOINT = "jobs/api"
