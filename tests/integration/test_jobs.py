@@ -1,4 +1,6 @@
 import pytest
+import os
+import csv
 
 from synthex import Synthex
 from synthex.models import ListJobsResponseModel
@@ -19,19 +21,24 @@ def test_list_jobs(synthex: Synthex):
     
     jobs_info = synthex.jobs.list()
         
-    assert isinstance(jobs_info, ListJobsResponseModel)
+    assert isinstance(jobs_info, ListJobsResponseModel), \
+        f"Expected ListJobsResponseModel, but got {type(jobs_info)}"
     
     
 @pytest.mark.integration
 def test_generate_data(synthex: Synthex):
     """
-    Test the `generate_data` method of the `jobs` attribute in the `Synthex` class.
-    This test verifies that the `generate_data` method of `synthex.jobs` does not raise 
-    any exceptions when called with valid parameters.
+    Test the `generate_data` method of the `Synthex` class to ensure it generates
+    a CSV file with the correct structure and content based on the provided schema,
+    examples, and requirements.
+    This test performs the following checks:
+    1. Verifies that the output file is created at the specified path.
+    2. Ensures the header of the generated CSV file matches the expected schema.
     Args:
-        synthex (Synthex): An instance of the `Synthex` class.
-    Asserts:
-        The `generate_data` method does not raise any exceptions.
+        synthex (Synthex): An instance of the `Synthex` class used to generate data.
+    Output:
+        - A CSV file is generated at the specified output path with the required
+          structure and content.
     """
     
     schema_definition = {
@@ -64,11 +71,28 @@ def test_generate_data(synthex: Synthex):
     ]
     number_of_samples = 20
     
-    response = synthex.jobs.generate_data(
+    output_path = f"./test_data/output.csv"
+    
+    synthex.jobs.generate_data(
         schema_definition=schema_definition,
         examples=examples,
         requirements=requirements,
         number_of_samples=number_of_samples,
-        output_type="tsv",
-        output_path="./test_data/output.csv",
+        output_type="csv",
+        output_path=output_path,
     )
+    
+    try:
+        # Check if the file exists
+        assert os.path.exists(output_path), "Output file was not created."
+
+        # Verify the header of the CSV file
+        with open("./test_data/output.csv", mode="r") as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            expected_header = ["question", "option-a", "option-b", "option-c", "option-d", "answer"]
+            assert header == expected_header, \
+                f"CSV header does not match. Expected: {expected_header}, Found: {header}"
+    finally:   
+        # Clean up the generated file after the test
+        os.remove(output_path)
