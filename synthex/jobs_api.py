@@ -6,8 +6,10 @@ from pydantic import validate_call
 
 from .models import ListJobsResponseModel, SuccessResponse
 from .consts import LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
+from .decorators import handle_validation_errors
 
 
+@handle_validation_errors
 class JobsAPI:
     
     def __init__(self, client: APIClient):

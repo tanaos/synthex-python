@@ -2,8 +2,10 @@ from .api_client import APIClient
 from .jobs_api import JobsAPI
 from .users_api import UsersAPI
 from .credits_api import CreditsAPI
+from .decorators import handle_validation_errors
 
 
+@handle_validation_errors
 class Synthex:
     """
     Synthex is a client library for interacting with the Synthex API.

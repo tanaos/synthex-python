@@ -41,3 +41,7 @@ class NotFoundError(SynthexError):
 class ServerError(SynthexError):
     """Raised when the API server returns a 5xx error."""
     pass
+
+class ValidationError(SynthexError):
+    """Raised when the API returns a validation error."""
+    pass
