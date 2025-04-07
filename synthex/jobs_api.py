@@ -51,9 +51,8 @@ class JobsAPI:
         Returns:
             SuccessResponse[None]: A response object indicating the success of the job execution.
         Raises:
-            ValueError: If the schema_definition or examples are invalid or do not conform to the expected format.
-            JSONDecodeError: If the response data cannot be parsed as valid JSON.
-            IOError: If there is an issue writing the CSV file to the specified output path.
+            ValueError: If the schema_definition or examples are invalid or do not conform to the 
+            expected format.
         """
         
         # TODO: validate schema_definition and examples: they need to be valid JSONs and conform

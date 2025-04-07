@@ -1,15 +1,28 @@
 import responses
 import pytest
 from datetime import datetime, timezone
+from typing import Any
 
 from synthex import Synthex
-from synthex.consts import API_BASE_URL, LIST_JOBS_ENDPOINT
+from synthex.consts import API_BASE_URL, LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
 from synthex.models import ListJobsResponseModel
 from synthex.exceptions import AuthenticationError
 
 
 @responses.activate
 def test_list_jobs_success(synthex: Synthex):
+    """
+    Test the successful retrieval of a list of jobs using the `list` method of the `Synthex` class.
+    This test mocks an HTTP GET request to the jobs endpoint and verifies that the response is correctly
+    parsed into a `ListJobsResponseModel` object. It checks the following:
+    - The response is of the expected type (`ListJobsResponseModel`).
+    - The total number of jobs matches the expected value.
+    - The attributes of the first job in the list (name, description, datapoint_num) match the expected values.
+    Assertions:
+    - The response object is of type `ListJobsResponseModel`.
+    - The total number of jobs is 1.
+    - The name, description, and datapoint_num of the first job match the expected values.
+    """
     
     responses.add(
         responses.GET,
@@ -45,6 +58,18 @@ def test_list_jobs_success(synthex: Synthex):
 
 @responses.activate
 def test_list_jobs_no_jobs_success(synthex: Synthex):
+    """
+    Test the successful retrieval of an empty list of jobs using the `list` method of the `Synthex` class.
+    This test mocks an HTTP GET request to the jobs endpoint and verifies that the response is correctly
+    parsed into a `ListJobsResponseModel` object. It checks the following:
+    - The response is of the expected type (`ListJobsResponseModel`).
+    - The total number of jobs is 0.
+    - The jobs list is empty.
+    Assertions:
+    - The response object is of type `ListJobsResponseModel`.
+    - The total number of jobs is 0.
+    - The jobs list is empty.
+    """
     
     responses.add(
         responses.GET,
@@ -70,6 +95,21 @@ def test_list_jobs_no_jobs_success(synthex: Synthex):
     
 @responses.activate
 def test_list_jobs_401_failure(synthex: Synthex):
+    """
+    Test case for handling a 401 Unauthorized response when listing jobs.
+    This test verifies that the `list` method of the `jobs` module in the `Synthex`
+    client raises an `AuthenticationError` when the API responds with a 401 status code.
+    Steps:
+    1. Mock the API response to return a 401 status code with an "unauthorized" error message.
+    2. Attempt to call the `list` method on the `jobs` module.
+    3. Assert that an `AuthenticationError` is raised.
+    4. If the error is not raised, the test fails with an appropriate message.
+    Args:
+        synthex (Synthex): An instance of the Synthex client.
+    Asserts:
+    - An `AuthenticationError` is raised when the API returns a 401 status code.
+    - If the error is not raised, the test fails with an assertion error.
+    """
     
     responses.add(
         responses.GET,
@@ -82,4 +122,5 @@ def test_list_jobs_401_failure(synthex: Synthex):
         with pytest.raises(AuthenticationError):
             synthex.jobs.list()
     except AssertionError:
-        pytest.fail("Expected AuthenticationError when API returns 401")
+        pytest.fail("Expected AuthenticationError when API returns 401")    
+    
