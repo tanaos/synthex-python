@@ -91,7 +91,14 @@ def test_generate_data_schema_definition_validation_error(
         with pytest.raises(ValidationError):
             synthex.jobs.generate_data(
                 # Invalid argument type for schema_definition
-                schema_definition=1, #type: ignore 
+                schema_definition={
+                    "question": {
+                        "datatype": "string" #type: ignore
+                    },
+                    "option-a": {
+                        "type": "string"
+                    }
+                },
                 examples=generate_data_params["examples"],
                 requirements=generate_data_params["requirements"],
                 number_of_samples=generate_data_params["number_of_samples"],
@@ -190,7 +197,7 @@ def test_generate_data_num_of_samples_validation_error(
                 examples=generate_data_params["examples"],
                 requirements=generate_data_params["requirements"],
                 # Invalid argument type for number_of_samples
-                number_of_samples="abc", #type: ignore
+                number_of_samples=1001,
                 output_type=generate_data_params["output_type"],
                 output_path=generate_data_params["output_path"]
             )

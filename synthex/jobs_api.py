@@ -2,11 +2,12 @@ from .api_client import APIClient
 from typing import Any, List, Literal
 import json
 import csv
-from pydantic import validate_call
+from pydantic import validate_call, Field
 
-from .models import ListJobsResponseModel, SuccessResponse
+from .models import ListJobsResponseModel, SuccessResponse, JobOutputDomainType
 from .consts import LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
 from .decorators import handle_validation_errors
+from .exceptions import ValidationError
 
 
 @handle_validation_errors
@@ -27,12 +28,16 @@ class JobsAPI:
         
         response = self._client.get(f"{LIST_JOBS_ENDPOINT}?limit={limit}&offset={offset}")
         return ListJobsResponseModel.model_validate(response.data)
-    
+
     @validate_call
     def generate_data(
-        self, schema_definition: dict[Any, Any], examples: List[dict[Any, Any]], 
-        requirements: List[str], number_of_samples: int, output_type: Literal["csv", "pandas"], 
-        output_path: str
+        self, 
+        schema_definition: JobOutputDomainType,
+        examples: List[dict[Any, Any]], 
+        requirements: List[str],
+        output_path: str,
+        number_of_samples: int = Field(..., gt=0, lt=1000), 
+        output_type: Literal["csv", "pandas"] = "csv",
     ) -> SuccessResponse[None]:
         """
         Generates data based on the provided schema definition, examples, and requirements.
@@ -55,9 +60,11 @@ class JobsAPI:
             expected format.
         """
         
-        # TODO: validate schema_definition and examples: they need to be valid JSONs and conform
-        # to the output schema definition type.
-        
+        # Validate that each example conforms to the schema definition
+        for example in examples:
+            if set(example.keys()) != set(schema_definition.keys()):
+                raise ValidationError("Example keys do not match schema definition keys.")
+            
         data: dict[str, Any] = {
             "output_schema": schema_definition,
             "examples": examples,

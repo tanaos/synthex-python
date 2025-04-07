@@ -1,10 +1,9 @@
 import responses
 import pytest
 from datetime import datetime, timezone
-from typing import Any
 
 from synthex import Synthex
-from synthex.consts import API_BASE_URL, LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
+from synthex.consts import API_BASE_URL, LIST_JOBS_ENDPOINT
 from synthex.models import ListJobsResponseModel
 from synthex.exceptions import AuthenticationError
 
