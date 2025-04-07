@@ -18,4 +18,4 @@ def test_promotional(synthex: Synthex):
     
     credits_info = synthex.credits.promotional()
         
-    assert isinstance(credits_info, CreditModel)
+    assert isinstance(credits_info, CreditModel), "Promotional credits info is not of type CreditModel."

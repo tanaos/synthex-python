@@ -8,7 +8,7 @@ from synthex.exceptions import NotFoundError, AuthenticationError
 
 
 @responses.activate
-def test_promotional_success(synthex: Synthex, ):
+def test_promotional_success(synthex: Synthex):
     """
     This test verifies that the `promotional` method of the `credits` module
     in the `Synthex` class correctly retrieves promotional credit information
@@ -43,9 +43,9 @@ def test_promotional_success(synthex: Synthex, ):
 
     credits_info = synthex.credits.promotional()
 
-    assert isinstance(credits_info, CreditModel)
-    assert credits_info.amount== 100
-    assert credits_info.currency == "USD"
+    assert isinstance(credits_info, CreditModel), "Promotional credits info is not of type CreditModel."
+    assert credits_info.amount== 100, "Promotional credits amount is not 100."
+    assert credits_info.currency == "USD", "Promotional credits currency is not USD."
     
     
 @responses.activate
@@ -74,8 +74,11 @@ def test_promotional_401_failure(synthex: Synthex):
         status=401
     )
 
-    with pytest.raises(AuthenticationError):
-        synthex.credits.promotional()
+    try:
+        with pytest.raises(AuthenticationError):
+            synthex.credits.promotional()
+    except AssertionError:
+        pytest.fail("Expected AuthenticationError to be raised, but it wasn't.")
 
 
 @responses.activate
@@ -108,5 +111,8 @@ def test_promotional_404_failure(synthex: Synthex):
         status=404
     )
 
-    with pytest.raises(NotFoundError):
-        synthex.credits.promotional()
+    try:
+        with pytest.raises(NotFoundError):
+            synthex.credits.promotional()
+    except AssertionError:
+        pytest.fail("Expected NotFoundError to be raised, but it wasn't.")

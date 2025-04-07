@@ -19,4 +19,4 @@ def test_me(synthex: Synthex):
     
     user_info = synthex.users.me()
         
-    assert isinstance(user_info, UserResponseModel)
+    assert isinstance(user_info, UserResponseModel), "User info is not of type UserResponseModel."

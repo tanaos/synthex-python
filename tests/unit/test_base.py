@@ -30,7 +30,7 @@ def test_ping_success(synthex: Synthex):
         status=200
     )
     
-    assert synthex.ping() is True
+    assert synthex.ping() is True, "Ping failed, Synthex instance is not functioning as expected."
     
 
 @responses.activate
@@ -58,4 +58,4 @@ def test_ping_failure(synthex: Synthex):
         status=500
     )
     
-    assert synthex.ping() is False
+    assert synthex.ping() is False, "Ping should fail, but it returned True."

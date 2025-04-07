@@ -15,4 +15,4 @@ def test_ping(synthex: Synthex):
         The `ping` method of the `Synthex` instance returns `True`.
     """
     
-    assert synthex.ping() is True
+    assert synthex.ping() is True, "Ping failed, Synthex instance is not functioning as expected."

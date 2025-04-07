@@ -55,14 +55,15 @@ def test_me_success(synthex: Synthex, ):
 
     user = synthex.users.me()
 
-    assert isinstance(user, UserResponseModel)
-    assert user.id == "abc123"
-    assert user.first_name == "John"
-    assert user.last_name == "Doe"
-    assert user.email == "john.doe@gmail.com"
-    assert user.default_payment_method_id == "def456"
-    assert user.promo_credit_granted == datetime(2025, 3, 15, 18, 20, 41, 677278, tzinfo=timezone.utc)
-    assert user.is_verified is True
+    assert isinstance(user, UserResponseModel), "User info is not of type UserResponseModel."
+    assert user.id == "abc123", "User ID does not match the expected value."
+    assert user.first_name == "John", "User first name does not match the expected value."
+    assert user.last_name == "Doe", "User last name does not match the expected value."
+    assert user.email == "john.doe@gmail.com", "User email does not match the expected value."
+    assert user.default_payment_method_id == "def456", "User default payment method ID does not match the expected value."
+    assert user.promo_credit_granted == datetime(2025, 3, 15, 18, 20, 41, 677278, tzinfo=timezone.utc), \
+        "User promo credit granted date does not match the expected value."
+    assert user.is_verified is True, "User verification status does not match the expected value."
     
     
 @responses.activate
@@ -86,8 +87,11 @@ def test_me_401_failure(synthex: Synthex):
         status=401
     )
 
-    with pytest.raises(AuthenticationError):
-        synthex.users.me()
+    try:
+        with pytest.raises(AuthenticationError):
+            synthex.users.me()
+    except AssertionError:
+        pytest.fail("Expected AuthenticationError when API returns 401")
 
 
 @responses.activate
@@ -117,5 +121,8 @@ def test_me_404_failure(synthex: Synthex):
         status=404
     )
 
-    with pytest.raises(NotFoundError):
-        synthex.users.me()
+    try:
+        with pytest.raises(NotFoundError):
+            synthex.users.me()
+    except AssertionError:
+        pytest.fail("Expected NotFoundError when API returns 404")
