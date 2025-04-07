@@ -62,11 +62,13 @@ def test_generate_data(synthex: Synthex):
         "Indirect Approach: Questions should be indirect and require knowledge application",
         "Conceptual Focus: Emphasize conceptual understanding, problem-solving, and analytical thinking"
     ]
-    number_of_samples = 10
+    number_of_samples = 20
     
     response = synthex.jobs.generate_data(
         schema_definition=schema_definition,
         examples=examples,
         requirements=requirements,
-        number_of_samples=number_of_samples
+        number_of_samples=number_of_samples,
+        output_type="tsv",
+        output_path="./test_data/output.csv",
     )

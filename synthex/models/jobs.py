@@ -8,7 +8,7 @@ class JobStatus(str, enum.Enum):
     IN_PROGRESS = "In Progress"
     COMPLETED = "Completed"
     FAILED = "Failed"
-    
+
 
 class JobResponseModel(BaseModel):
     id: str
