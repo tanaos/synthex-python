@@ -57,14 +57,14 @@ class APIClient:
             RateLimitError: If the response status code is 429 (Rate Limit Exceeded).
             ServerError: If the response status code is in the range 500-599 (Server Error).
         """
-        
+                
         try:
             error_details = response.json()
         except ValueError:
             error_details = response.text
         
         status = response.status_code
-        
+                        
         if status == 401:
             raise AuthenticationError("Unauthorized", status, response.url, error_details)
         elif status == 404:
@@ -73,7 +73,7 @@ class APIClient:
             raise RateLimitError("Rate limit exceeded", status, response.url, error_details)
         elif 500 <= status < 600:
             raise ServerError("Server error", status, response.url, error_details)
-        
+                
         
     def get(
         self, endpoint: str, params: Optional[dict[str, Any]] = None
@@ -150,6 +150,26 @@ class APIClient:
         response = self.session.delete(url)
         self._handle_errors(response)
         return SuccessResponse(**response.json())
+    
+    
+    def post_stream(
+        self, endpoint: str, data: Optional[dict[str, Any]] = None
+    ) -> requests.Response:
+        """
+        Sends a POST request to the specified API endpoint and streams the response.
+        Args:
+            endpoint (str): The API endpoint to send the POST request to.
+            data (Optional[dict[str, Any]]): The JSON-serializable data to include in the request body. Defaults to None.
+        Returns:
+            requests.Response: The raw HTTP response object for streaming.
+        Raises:
+            SynthexError: If the response contains an HTTP error status code.
+        """
+        
+        url = f"{self.BASE_URL}/{endpoint}".rstrip("/")
+        response = self.session.post(url, json=data, stream=True)
+        self._handle_errors(response)
+        return response
     
     
     def ping(self) -> bool:
