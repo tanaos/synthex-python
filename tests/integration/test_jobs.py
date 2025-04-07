@@ -18,7 +18,6 @@ def test_list_jobs(synthex: Synthex):
     """
     
     jobs_info = synthex.jobs.list()
-    print("jobs_info: ", jobs_info)
         
     assert isinstance(jobs_info, ListJobsResponseModel)
     
@@ -43,7 +42,6 @@ def test_generate_data(synthex: Synthex):
         "option-d": {"type": "string"},
         "answer": {"type": "string"}
     }
-    
     examples = [
         {
             "question": "A gas occupies 6.0 L at 300 K and 1 atm. What is its volume at 600 K and 0.5 atm, assuming ideal gas behavior?",
@@ -54,7 +52,6 @@ def test_generate_data(synthex: Synthex):
             "answer": "option-b"
         }
     ]
-    
     requirements = [
         "Question Type: Multiple-choice questions (MCQs)",
         "Difficulty Level: High difficulty, comparable to SAT or AIEEE (JEE Main)",
@@ -65,7 +62,6 @@ def test_generate_data(synthex: Synthex):
         "Indirect Approach: Questions should be indirect and require knowledge application",
         "Conceptual Focus: Emphasize conceptual understanding, problem-solving, and analytical thinking"
     ]
-    
     number_of_samples = 10
     
     response = synthex.jobs.generate_data(
@@ -74,5 +70,3 @@ def test_generate_data(synthex: Synthex):
         requirements=requirements,
         number_of_samples=number_of_samples
     )
-    
-    print(response)

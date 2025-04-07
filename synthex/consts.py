@@ -10,4 +10,4 @@ GET_PROMOTIONAL_CREDITS_ENDPOINT = "credits/promotional"
 
 # Jobs
 LIST_JOBS_ENDPOINT = "jobs"
-API_JOB_ENDPOINT = "jobs/api"
+CREATE_JOB_WITH_SAMPLES_ENDPOINT = "jobs/with-samples"
