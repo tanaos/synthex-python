@@ -7,7 +7,7 @@ load_dotenv()
 
 synthex = Synthex(api_key=os.environ.get("API_KEY", ""))
 
-out = synthex.Jobs.generate_data(
+out = synthex.jobs.generate_data(
     schema_definition= {
         "question": {"type": "string"},
         "option-a": {"type": "string"},

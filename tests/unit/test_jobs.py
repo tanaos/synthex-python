@@ -46,7 +46,7 @@ def test_list_jobs_success(synthex: Synthex):
         status=200
     )
 
-    jobs_info = synthex.Jobs.list()
+    jobs_info = synthex.jobs.list()
 
     assert isinstance(jobs_info, ListJobsResponseModel), "Jobs info is not of type ListJobsResponseModel."
     assert jobs_info.total == 1, "Total jobs count is not 1."
@@ -85,7 +85,7 @@ def test_list_jobs_no_jobs_success(synthex: Synthex):
         status=200
     )
 
-    jobs_info = synthex.Jobs.list()
+    jobs_info = synthex.jobs.list()
 
     assert isinstance(jobs_info, ListJobsResponseModel), "Jobs info is not of type ListJobsResponseModel."
     assert jobs_info.total == 0, "Total jobs count is not 0."
@@ -119,7 +119,7 @@ def test_list_jobs_401_failure(synthex: Synthex):
 
     try:
         with pytest.raises(AuthenticationError):
-            synthex.Jobs.list()
+            synthex.jobs.list()
     except AssertionError:
         pytest.fail("Expected AuthenticationError when API returns 401")    
     

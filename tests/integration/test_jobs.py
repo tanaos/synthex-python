@@ -12,16 +12,16 @@ from synthex.exceptions import ValidationError
 def test_list_jobs(synthex: Synthex):
     """
     Test the `list` method of the `jobs` attribute in the `Synthex` class.
-    This test verifies that the `list` method of `synthex.Jobs` returns an 
+    This test verifies that the `list` method of `synthex.jobs` returns an 
     instance of `ListJobsResponseModel`.
     Args:
         synthex (Synthex): An instance of the `Synthex` class.
     Asserts:
-        The returned value from `synthex.Jobs.list()` is an instance of 
+        The returned value from `synthex.jobs.list()` is an instance of 
         `ListJobsResponseModel`.
     """
     
-    jobs_info = synthex.Jobs.list()
+    jobs_info = synthex.jobs.list()
         
     assert isinstance(jobs_info, ListJobsResponseModel), \
         f"Expected ListJobsResponseModel, but got {type(jobs_info)}"
@@ -45,7 +45,7 @@ def test_generate_data(synthex: Synthex, generate_data_params: dict[Any, Any]):
     
     output_path = generate_data_params["output_path"]
     
-    synthex.Jobs.generate_data(
+    synthex.jobs.generate_data(
         schema_definition=generate_data_params["schema_definition"],
         examples=generate_data_params["examples"],
         requirements=generate_data_params["requirements"],
@@ -89,7 +89,7 @@ def test_generate_data_schema_definition_validation_error(
     
     try:
         with pytest.raises(ValidationError):
-            synthex.Jobs.generate_data(
+            synthex.jobs.generate_data(
                 # Invalid argument type for schema_definition
                 schema_definition={
                     "question": {
@@ -128,7 +128,7 @@ def test_generate_data_examples_validation_error(
     
     try:
         with pytest.raises(ValidationError):
-            synthex.Jobs.generate_data(
+            synthex.jobs.generate_data(
                 schema_definition=generate_data_params["schema_definition"],
                 # Invalid argument type for examples
                 examples=1, #type: ignore
@@ -160,7 +160,7 @@ def test_generate_data_requirements_validation_error(
     
     try:
         with pytest.raises(ValidationError):
-            synthex.Jobs.generate_data(
+            synthex.jobs.generate_data(
                 schema_definition=generate_data_params["schema_definition"],
                 examples=generate_data_params["examples"],
                 # Invalid argument type for requirements
@@ -192,7 +192,7 @@ def test_generate_data_num_of_samples_validation_error(
     
     try:
         with pytest.raises(ValidationError):
-            synthex.Jobs.generate_data(
+            synthex.jobs.generate_data(
                 schema_definition=generate_data_params["schema_definition"],
                 examples=generate_data_params["examples"],
                 requirements=generate_data_params["requirements"],
@@ -224,7 +224,7 @@ def test_generate_data_output_type_validation_error(
     
     try:
         with pytest.raises(ValidationError):
-            synthex.Jobs.generate_data(
+            synthex.jobs.generate_data(
                 schema_definition=generate_data_params["schema_definition"],
                 examples=generate_data_params["examples"],
                 requirements=generate_data_params["requirements"],
@@ -256,7 +256,7 @@ def test_generate_data_output_path_validation_error(
     
     try:
         with pytest.raises(ValidationError):
-            synthex.Jobs.generate_data(
+            synthex.jobs.generate_data(
                 schema_definition=generate_data_params["schema_definition"],
                 examples=generate_data_params["examples"],
                 requirements=generate_data_params["requirements"],
