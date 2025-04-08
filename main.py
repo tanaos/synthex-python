@@ -5,9 +5,9 @@ import os
 
 load_dotenv()
 
-synthex = Synthex(api_key=os.environ.get("SYNTH_EX_API_KEY", ""))
+synthex = Synthex(api_key=os.environ.get("API_KEY", ""))
 
-synthex.jobs.generate_data(
+out = synthex.Jobs.generate_data(
     schema_definition= {
         "question": {"type": "string"},
         "option-a": {"type": "string"},
@@ -40,3 +40,5 @@ synthex.jobs.generate_data(
     output_type = "csv",
     output_path = f"./test_data/output.csv"
 )
+
+print(out)

@@ -41,7 +41,7 @@ def test_promotional_success(synthex: Synthex):
         status=200
     )
 
-    credits_info = synthex.credits.promotional()
+    credits_info = synthex.Credits.promotional()
 
     assert isinstance(credits_info, CreditModel), "Promotional credits info is not of type CreditModel."
     assert credits_info.amount== 100, "Promotional credits amount is not 100."
@@ -76,7 +76,7 @@ def test_promotional_401_failure(synthex: Synthex):
 
     try:
         with pytest.raises(AuthenticationError):
-            synthex.credits.promotional()
+            synthex.Credits.promotional()
     except AssertionError:
         pytest.fail("Expected AuthenticationError to be raised, but it wasn't.")
 
@@ -88,7 +88,7 @@ def test_promotional_404_failure(synthex: Synthex):
     promotional credits.
     This test simulates a scenario where the API endpoint for fetching
     promotional credits returns a 404 status code. It verifies that the
-    `synthex.credits.promotional()` method raises a `NotFoundError` exception
+    `synthex.Credits.promotional()` method raises a `NotFoundError` exception
     in response to the error.
     Steps:
     1. Mock the API response to return a 404 status code with an appropriate
@@ -113,6 +113,6 @@ def test_promotional_404_failure(synthex: Synthex):
 
     try:
         with pytest.raises(NotFoundError):
-            synthex.credits.promotional()
+            synthex.Credits.promotional()
     except AssertionError:
         pytest.fail("Expected NotFoundError to be raised, but it wasn't.")

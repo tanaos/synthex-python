@@ -13,10 +13,10 @@ def test_me(synthex: Synthex):
     Args:
         synthex (Synthex): An instance of the Synthex client.
     Assertions:
-        Asserts that the type of the object returned by `synthex.users.me()`
+        Asserts that the type of the object returned by `synthex.Users.me()`
         is `UserResponseModel`.
     """
     
-    user_info = synthex.users.me()
+    user_info = synthex.Users.me()
         
     assert isinstance(user_info, UserResponseModel), "User info is not of type UserResponseModel."

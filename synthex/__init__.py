@@ -20,9 +20,9 @@ class Synthex:
     
     def __init__(self, api_key: str):
         self._client = APIClient(api_key)
-        self.jobs = JobsAPI(self._client)
-        self.users = UsersAPI(self._client)
-        self.credits = CreditsAPI(self._client)
+        self.Jobs = JobsAPI(self._client)
+        self.Users = UsersAPI(self._client)
+        self.Credits = CreditsAPI(self._client)
         
     def ping(self) -> bool:
         """

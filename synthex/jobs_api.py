@@ -37,7 +37,7 @@ class JobsAPI:
         requirements: List[str],
         output_path: str,
         number_of_samples: int = Field(..., gt=0, lt=1000), 
-        output_type: Literal["csv", "pandas"] = "csv",
+        output_type: Literal["csv"] = "csv",
     ) -> SuccessResponse[None]:
         """
         Generates data based on the provided schema definition, examples, and requirements.
@@ -49,9 +49,8 @@ class JobsAPI:
             requirements (List[str]): A list of specific requirements or constraints for the data 
                 generation.
             number_of_samples (int): The number of data samples to generate.
-            output_type (Literal["csv", "pandas"]): The desired output format for the generated data. 
+            output_type (Literal["csv"]): The desired output format for the generated data. 
                 - "csv": Saves the data to a CSV file.
-                - "pandas": Returns the data as a pandas DataFrame.
             output_path (str): The file path where the generated data should be saved.
         Returns:
             SuccessResponse[None]: A response object indicating the success of the job execution.

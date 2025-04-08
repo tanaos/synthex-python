@@ -53,7 +53,7 @@ def test_me_success(synthex: Synthex, ):
         status=200
     )
 
-    user = synthex.users.me()
+    user = synthex.Users.me()
 
     assert isinstance(user, UserResponseModel), "User info is not of type UserResponseModel."
     assert user.id == "abc123", "User ID does not match the expected value."
@@ -75,7 +75,7 @@ def test_me_401_failure(synthex: Synthex):
     Steps:
     1. Mock an HTTP GET request to the endpoint with a 401 status code and 
        an error message indicating unauthorized access.
-    2. Assert that calling `synthex.users.me()` raises an `AuthenticationError`.
+    2. Assert that calling `synthex.Users.me()` raises an `AuthenticationError`.
     Args:
         synthex (Synthex): An instance of the Synthex class to test.
     """
@@ -89,7 +89,7 @@ def test_me_401_failure(synthex: Synthex):
 
     try:
         with pytest.raises(AuthenticationError):
-            synthex.users.me()
+            synthex.Users.me()
     except AssertionError:
         pytest.fail("Expected AuthenticationError when API returns 401")
 
@@ -99,12 +99,12 @@ def test_me_404_failure(synthex: Synthex):
     """
     Test case for handling a 404 Not Found error when retrieving the current user.
     This test simulates a scenario where the API returns a 404 response for the
-    "me" endpoint. It ensures that the `synthex.users.me()` method
+    "me" endpoint. It ensures that the `synthex.Users.me()` method
     raises a `NotFoundError` exception when the endpoint is not found.
     Steps:
     1. Mock the API response for the GET request to return a 404 status code with
        an appropriate error message.
-    2. Verify that calling `synthex.users.me()` raises the expected `NotFoundError`.
+    2. Verify that calling `synthex.Users.me()` raises the expected `NotFoundError`.
     Args:
         synthex (Synthex): An instance of the Synthex client to test.
     """
@@ -123,6 +123,6 @@ def test_me_404_failure(synthex: Synthex):
 
     try:
         with pytest.raises(NotFoundError):
-            synthex.users.me()
+            synthex.Users.me()
     except AssertionError:
         pytest.fail("Expected NotFoundError when API returns 404")
