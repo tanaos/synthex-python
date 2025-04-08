@@ -4,16 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "synthex"
-version = "0.0.1"
-description = "Tanos synthex library"
+version = "0.1.0"
+description = "Synthex python library - developed by Tanaos"
 authors = [
     { name = "Riccardo Lucato", email = "riccardo@tanaos.com" },
     { name = "Saurabh Pradhan" }
 ]
 license = { text = "MIT" }
+requires-python = ">=3.7"
 dependencies = [
-
+    "requests>=2.32.3",
+    "responses>=0.25.7",
+    "python-dotenv>=1.1.0",
+    "pydantic>=2.11.2",
 ]
+
+[project.urls]
+homepage = "https://github.com/tanaos/synthex-python"
 
 [tool.setuptools]
 include-package-data = true
