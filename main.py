@@ -1,11 +1,7 @@
 from synthex import Synthex
-from dotenv import load_dotenv
-import os
 
 
-load_dotenv()
-
-synthex = Synthex(api_key=os.environ.get("API_KEY", ""))
+synthex = Synthex()
 
 out = synthex.jobs.generate_data(
     schema_definition= {

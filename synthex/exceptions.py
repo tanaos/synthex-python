@@ -45,3 +45,7 @@ class ServerError(SynthexError):
 class ValidationError(SynthexError):
     """Raised when the API returns a validation error."""
     pass
+
+class ConfigurationError(SynthexError):
+    """Raised when the configuration, or parts of it, is missing or malformed."""
+    pass

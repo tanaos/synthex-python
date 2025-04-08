@@ -1,8 +1,13 @@
+from typing import Optional
+import os
+from dotenv import load_dotenv
+
 from .api_client import APIClient
 from .jobs_api import JobsAPI
 from .users_api import UsersAPI
 from .credits_api import CreditsAPI
 from .decorators import handle_validation_errors
+from .exceptions import ConfigurationError
 
 
 @handle_validation_errors
@@ -18,7 +23,16 @@ class Synthex:
             reachable, False otherwise.
     """
     
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: Optional[str] = None):
+        load_dotenv()
+        
+        if not api_key:
+            api_key=os.environ.get("API_KEY")
+        if not api_key:
+            raise ConfigurationError(
+                "An API key is required. Please provide it as an argument or set the API_KEY \
+                environment variable."
+            )
         self._client = APIClient(api_key)
         self.jobs = JobsAPI(self._client)
         self.users = UsersAPI(self._client)
