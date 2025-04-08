@@ -10,7 +10,7 @@ from .decorators import handle_validation_errors
 from .exceptions import ConfigurationError
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 @handle_validation_errors

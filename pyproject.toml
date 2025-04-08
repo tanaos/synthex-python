@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "synthex"
-version = "0.1.0"
+version = "0.1.2"
 description = "Synthex python library - developed by Tanaos"
 authors = [
     { name = "Riccardo Lucato", email = "riccardo@tanaos.com" },
@@ -19,17 +19,6 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "pydantic>=2.11.2",
 ]
-
-[project.urls]
-homepage = "https://github.com/tanaos/synthex-python"
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["synthex*"]
-
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -40,3 +29,12 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Operating System :: OS Independent",
 ]
+
+[project.urls]
+homepage = "https://github.com/tanaos/synthex-python"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
