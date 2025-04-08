@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "synthex"
-version = "0.1.2"
 description = "Synthex python library - developed by Tanaos"
 authors = [
     { name = "Riccardo Lucato", email = "riccardo@tanaos.com" },
@@ -38,3 +37,6 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
+
+[tool.setuptools_scm]
+version_file = "synthex/__version__.py"
