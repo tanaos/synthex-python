@@ -1,7 +1,24 @@
-.venv
-venv
-.vscode
+# Virtual environment
+.venv/
+venv/
+.env/
+
+# VS Code stuff
+.vscode/
+
+# Cache
+__pycache__/
 .*cache
-__pycache__
+
+# Environment variables
 .env
-test_data
+
+# Tests
+test_data/
+.coverage
+htmlcov/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
