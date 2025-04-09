@@ -1,7 +1,7 @@
 # Synthex
 
-![Static Badge](https://img.shields.io/pypi/v/synthex?logo=pypi&logoColor=%23fff&color=%23006dad&link=https%3A%2F%2Fpypi.org%2Fproject%2Fsynthex%2F)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tanaos/synthex/python-publish.yml?logo=github&logoColor=%23fff&label=CI&link=https%3A%2F%2Fgithub.com%2Ftanaos%2Fsynthex-python%2Factions%2Fworkflows%2Fpython-publish.yml)
+[![Static Badge](https://img.shields.io/pypi/v/synthex?logo=pypi&logoColor=%23fff&color=%23006dad)](https://pypi.org/project/synthex/)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tanaos/synthex/python-publish.yml?logo=github&logoColor=%23fff&label=CI)](https://github.com/tanaos/synthex-python/actions/workflows/python-publish.yml)
 
 
 Synthex is a Python library for high-quality, large-scale synthetic dataset generation 📊🧪, powered by the [Tanaos Platform](https://tanaos.com) API.
