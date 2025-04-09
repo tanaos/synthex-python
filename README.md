@@ -69,4 +69,75 @@ client.jobs.generate_data(
 )
 ```
 
+where the parameters are as follows:
 
+- `schema_definition`: A dictionary which specifies the output dataset's schema. It must have the following format:
+    ```json
+    {
+        "<name_of_column_1>": {"type": "<datatype_of_column_1>"},
+        "<name_of_column_2>": {"type": "<datatype_of_column_2>"},
+        ...
+        "<name_of_column_n>": {"type": "<datatype_of_column_n>"}
+    }
+    ```
+
+    the possible values of `"type"` are `"string"`, `"integer"` and `"float"`.
+
+    For instance, if you want to generate a of real estate listings dataset, a possible value for the `schema_definition` parameter could be the following:
+
+    ```python
+    schema_definition = {
+        "surface": {"type": "float"},
+        "number_of_rooms": {"type": "integer"},
+        "construction_year": {"type": "integer"},
+        "city": {"type": "string"},
+        "market_price": {"type": "float"}
+    },
+    ```
+
+- `examples`: A list of dictionaries, which specifies a few (3 to 5 are enough) sample datapoints that will help the data generation model understand what the output data should look like. They must have the same schema as the one specified in the `schema_definition` parameter, or an exception will be raised.
+
+    In the "real estate listing dataset" scenario, a possible value for the `examples` parameter could be the following:
+
+    ```python
+    examples = [
+        {
+            "surface": 104.00,
+            "number_of_rooms": 3,
+            "construction_year": 1985,
+            "city": "Nashville",
+            "market_price": 218000.00
+        },
+        {
+            "surface": 98.00,
+            "number_of_rooms": 2,
+            "construction_year": 1999,
+            "city": "Springfield",
+            "market_price": 177000.00
+        },
+        {
+            "surface": 52.00,
+            "number_of_rooms": 1,
+            "construction_year": 2014,
+            "city": "Denver",
+            "market_price": 230000.00
+        },
+    ]
+    ```
+
+- `requirements`: a list of strings, where each string specifies a requirement or constraint for the job. It can be an empty list if no specific requirements are present.
+
+    In the "real estate listings dataset" scenario, a possible value for the `requirements` parameter is the following:
+
+    ```python
+    requirements = [
+        "The 'market price' field should be realistic and should depend on the characteristics of the property.",
+        "The 'city' field should specify cities in the USA, and the USA only"
+    ]
+    ```
+
+- `number_of_samples`: an integer which specifies the number of datapoints that the model should generate. Keep in mind that the maximum number of datapoints you can generate with a single job depends on whether you are on a free or paid plan.
+
+- `output_type`: a string which specifies the format of the output dataset. Only `"csv"` (meaning a .csv file will be generated) is supported at this time, but we will soon add more options.
+
+- `output_path`: a string which specifies a path on your machine where the output dataset will be generated. For instance: `./output_data`.
