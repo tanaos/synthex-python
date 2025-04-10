@@ -34,7 +34,7 @@ out = synthex.jobs.generate_data(
     ],
     number_of_samples = 20,
     output_type = "csv",
-    output_path = f"./test_data/output.csv"
+    output_path = f"./test_data/output.pdf"
 )
 
 print(out)

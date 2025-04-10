@@ -72,7 +72,7 @@ client.jobs.generate_data(
 where the parameters are as follows:
 
 - `schema_definition`: A dictionary which specifies the output dataset's schema. It must have the following format:
-    ```json
+    ```python
     {
         "<name_of_column_1>": {"type": "<datatype_of_column_1>"},
         "<name_of_column_2>": {"type": "<datatype_of_column_2>"},
@@ -140,4 +140,4 @@ where the parameters are as follows:
 
 - `output_type`: a string which specifies the format of the output dataset. Only `"csv"` (meaning a .csv file will be generated) is supported at this time, but we will soon add more options.
 
-- `output_path`: a string which specifies a path on your machine where the output dataset will be generated. For instance: `./output_data`.
+- `output_path`: a string which specifies a full path (including file name) on your machine where the output dataset will be generated. For instance: `./output_data/output.csv`. If the provided file extension does not match the file type specified in 'output_type`, synthex will silently update the file extension to match the one provided in `output_type`.
