@@ -65,5 +65,5 @@ def generate_data_params() -> dict[Any, Any]:
         ],
         "number_of_samples": 20,
         "output_type": "csv",
-        "output_path": f"./test_data/output.csv"
+        "output_path": f"test_data/output.csv"
     }

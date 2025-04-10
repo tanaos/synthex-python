@@ -4,31 +4,11 @@ import csv
 from typing import Any
 
 from synthex import Synthex
-from synthex.models import ListJobsResponseModel
 from synthex.exceptions import ValidationError
-
-
-@pytest.mark.integration
-def test_list_jobs(synthex: Synthex):
-    """
-    Test the `list` method of the `jobs` attribute in the `Synthex` class.
-    This test verifies that the `list` method of `synthex.jobs` returns an 
-    instance of `ListJobsResponseModel`.
-    Args:
-        synthex (Synthex): An instance of the `Synthex` class.
-    Asserts:
-        The returned value from `synthex.jobs.list()` is an instance of 
-        `ListJobsResponseModel`.
-    """
-    
-    jobs_info = synthex.jobs.list()
-        
-    assert isinstance(jobs_info, ListJobsResponseModel), \
-        f"Expected ListJobsResponseModel, but got {type(jobs_info)}"
-    
+  
     
 @pytest.mark.integration
-def test_generate_data(synthex: Synthex, generate_data_params: dict[Any, Any]):
+def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any, Any]):
     """
     Test the `generate_data` method of the `Synthex` class to ensure it generates
     a CSV file with the correct structure and content based on the provided schema,
@@ -67,7 +47,8 @@ def test_generate_data(synthex: Synthex, generate_data_params: dict[Any, Any]):
                 f"CSV header does not match. Expected: {expected_header}, Found: {header}"
     finally:   
         # Clean up the generated file after the test
-        os.remove(output_path)
+        pass
+        #os.remove(output_path)
         
         
 @pytest.mark.integration

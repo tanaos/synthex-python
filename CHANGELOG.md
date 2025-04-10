@@ -11,15 +11,9 @@
 - Added feature_request.md
 - Added pull_request_template.md
 - Added sanitation logic for the `output_path` parameter of `Jobs.generate_data()`
-
-### Fixes
-
-
+- Added unit tests for `Jobs.generate_data()`
 
 ### Changes
 
 - Updated README.md
-
-#### Removals
-
-
+- Changed name of most test files

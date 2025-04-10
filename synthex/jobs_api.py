@@ -97,7 +97,7 @@ class JobsAPI:
         
         # Sanitize the output path
         output_path = self._sanitize_output_path(output_path, output_type)
-        
+                
         # Validate that each example conforms to the schema definition
         for example in examples:
             if set(example.keys()) != set(schema_definition.keys()):
@@ -109,11 +109,15 @@ class JobsAPI:
             "requirements": requirements,
             "datapoint_num": number_of_samples
         }
-        
+                
         response = self._client.post_stream(f"{CREATE_JOB_WITH_SAMPLES_ENDPOINT}", data=data)
         
         # Create the output directory if it doesn't exist
+        print("CREATING FILE")
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # Print the content of the parent directory for debugging purposes
+        print("Parent directory content:", os.listdir("test_data"))
+        print("CREATED FILE")
         
         for line in response.iter_lines(decode_unicode=True):
             # Strip "data: " prefix automatically added by the SSE and parse the JSON.
