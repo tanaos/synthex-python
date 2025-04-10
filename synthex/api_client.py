@@ -1,7 +1,7 @@
 import requests
 from typing import Optional, Any
 
-from .consts import API_BASE_URL, PING_ENDPOINT
+from .endpoints import API_BASE_URL, PING_ENDPOINT
 from .models import SuccessResponse
 from .exceptions import *
 

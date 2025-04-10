@@ -1,6 +1,6 @@
 from .api_client import APIClient
 
-from .consts import GET_PROMOTIONAL_CREDITS_ENDPOINT
+from .endpoints import GET_PROMOTIONAL_CREDITS_ENDPOINT
 from .models import CreditModel
 
 

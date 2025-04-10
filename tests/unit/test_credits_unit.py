@@ -2,7 +2,7 @@ import responses
 import pytest
 
 from synthex import Synthex
-from synthex.consts import API_BASE_URL, GET_PROMOTIONAL_CREDITS_ENDPOINT
+from synthex.endpoints import API_BASE_URL, GET_PROMOTIONAL_CREDITS_ENDPOINT
 from synthex.models import CreditModel
 from synthex.exceptions import NotFoundError, AuthenticationError
 

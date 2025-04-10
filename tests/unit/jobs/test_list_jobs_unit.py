@@ -3,7 +3,7 @@ import pytest
 from datetime import datetime, timezone
 
 from synthex import Synthex
-from synthex.consts import API_BASE_URL, LIST_JOBS_ENDPOINT
+from synthex.endpoints import API_BASE_URL, LIST_JOBS_ENDPOINT
 from synthex.models import ListJobsResponseModel
 from synthex.exceptions import AuthenticationError
 

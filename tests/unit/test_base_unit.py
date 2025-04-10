@@ -2,7 +2,7 @@ import responses
 import pytest
 
 from synthex import Synthex
-from synthex.consts import API_BASE_URL, PING_ENDPOINT
+from synthex.endpoints import API_BASE_URL, PING_ENDPOINT
 
 
 @responses.activate
@@ -21,7 +21,6 @@ def test_ping_success(synthex: Synthex):
     Args:
         synthex (Synthex): An instance of the Synthex class to test.
     """
-    
     
     responses.add(
         responses.GET,
@@ -47,7 +46,6 @@ def test_ping_failure(synthex: Synthex):
         - Mock the HTTP GET request to the `PING_ENDPOINT` using the `responses` library.
         - Configure the mock to return a 500 status code with a failure message.
     """
-    
     
     responses.add(
         responses.GET,

@@ -13,11 +13,9 @@ def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any,
     Test the `generate_data` method of the `Synthex` class to ensure it generates
     a CSV file with the correct structure and content based on the provided schema,
     examples, and requirements.
-    This test performs the following checks:
-    1. Verifies that the output file is created at the specified path.
-    2. Ensures the header of the generated CSV file matches the expected schema.
     Args:
         synthex (Synthex): An instance of the `Synthex` class used to generate data.
+        generate_data_params (dict[Any, Any]): A dictionary containing the required parameters.
     """
     
     output_path = generate_data_params["output_path"]
@@ -36,7 +34,7 @@ def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any,
         assert os.path.exists(output_path), "Output file was not created."
 
         # Verify the header of the CSV file
-        with open("./test_data/output.csv", mode="r") as file:
+        with open(output_path, mode="r") as file:
             reader = csv.reader(file)
             header = next(reader)
             expected_header = ["question", "option-a", "option-b", "option-c", "option-d", "answer"]

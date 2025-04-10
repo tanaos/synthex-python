@@ -3,7 +3,7 @@ import pytest
 from datetime import datetime, timezone
 
 from synthex import Synthex
-from synthex.consts import API_BASE_URL, GET_CURRENT_USER_ENDPOINT
+from synthex.endpoints import API_BASE_URL, GET_CURRENT_USER_ENDPOINT
 from synthex.models import UserResponseModel
 from synthex.exceptions import NotFoundError, AuthenticationError
 

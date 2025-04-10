@@ -1,6 +1,6 @@
 from .api_client import APIClient
 
-from .consts import GET_CURRENT_USER_ENDPOINT
+from .endpoints import GET_CURRENT_USER_ENDPOINT
 from .models import UserResponseModel
 
 

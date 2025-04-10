@@ -3,12 +3,13 @@ from typing import Any, List
 import json
 import csv
 from pydantic import validate_call, Field
+import os
 
 from .models import ListJobsResponseModel, SuccessResponse, JobOutputDomainType, JobOutputFormats
-from .consts import LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
+from .endpoints import LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
 from .decorators import handle_validation_errors
 from .exceptions import ValidationError
-import os
+from .config import OUTPUT_FILE_DEFAULT_NAME
 
 
 @handle_validation_errors
@@ -45,8 +46,6 @@ class JobsAPI:
         # Determine the correct file extension based on the desired format
         correct_extension = f".{desired_format}"
         
-        default_file_name = f"synthex-output{correct_extension}"
-
         # Extract the directory and file name from the output path
         directory, file_name = os.path.split(output_path)
         
@@ -57,7 +56,7 @@ class JobsAPI:
                 file_name = f"{base_name}{correct_extension}"
         else:
             # If no file name is provided, use a default name with the correct extension
-            file_name = default_file_name
+            file_name = OUTPUT_FILE_DEFAULT_NAME(desired_format)
         
         # Combine the directory and sanitized file name
         output_path = os.path.join(directory, file_name)
