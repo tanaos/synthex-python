@@ -27,3 +27,5 @@ class ListJobsResponseModel(BaseModel):
     
     
 JobOutputDomainType = dict[str, dict[Literal["type"], Literal["string", "integer", "float"]]]
+
+JobOutputFormats = Literal["csv"]

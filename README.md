@@ -140,4 +140,4 @@ where the parameters are as follows:
 
 - `output_type`: a string which specifies the format of the output dataset. Only `"csv"` (meaning a .csv file will be generated) is supported at this time, but we will soon add more options.
 
-- `output_path`: a string which specifies a full path (including file name) on your machine where the output dataset will be generated. For instance: `./output_data/output.csv`. If the provided file extension does not match the file type specified in 'output_type`, synthex will silently update the file extension to match the one provided in `output_type`.
+- `output_path`: a string which specifies the path where the output dataset will be generated. It does not need to contain a file name, as this will be added automatically if one is not provided. If `output_path` does contain a file name, its extension must be consistent with the `output_type` parameter. If this is the case, the provided `output_path` is used in its entirety. Otherwise, the provided extension is replaced with one that is consistent with `output_type`.

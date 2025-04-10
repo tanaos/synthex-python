@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "synthex"
 dynamic = ["version"]
-description = "Synthex python library - developed by Tanaos"
+description = "Generate high-quality, large-scale synthetic datasets 📊🧪"
 authors = [
     { name = "Riccardo Lucato", email = "riccardo@tanaos.com" },
     { name = "Saurabh Pradhan" }

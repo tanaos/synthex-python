@@ -1,13 +1,14 @@
 from .api_client import APIClient
-from typing import Any, List, Literal
+from typing import Any, List
 import json
 import csv
 from pydantic import validate_call, Field
 
-from .models import ListJobsResponseModel, SuccessResponse, JobOutputDomainType
+from .models import ListJobsResponseModel, SuccessResponse, JobOutputDomainType, JobOutputFormats
 from .consts import LIST_JOBS_ENDPOINT, CREATE_JOB_WITH_SAMPLES_ENDPOINT
 from .decorators import handle_validation_errors
 from .exceptions import ValidationError
+import os
 
 
 @handle_validation_errors
@@ -28,6 +29,41 @@ class JobsAPI:
         
         response = self._client.get(f"{LIST_JOBS_ENDPOINT}?limit={limit}&offset={offset}")
         return ListJobsResponseModel.model_validate(response.data)
+    
+    
+    @staticmethod
+    def _sanitize_output_path(output_path: str, desired_format: JobOutputFormats) -> str:
+        """
+        Ensure that the output path is valid, then add the file name to it.
+        Args:
+            output_path (str): The output path to sanitize.
+            format (JobOutputFormats): The desired output format.
+        Returns:
+            str: The sanitized output path.
+        """
+        
+        # Determine the correct file extension based on the desired format
+        correct_extension = f".{desired_format}"
+        
+        default_file_name = f"synthex-output{correct_extension}"
+
+        # Extract the directory and file name from the output path
+        directory, file_name = os.path.split(output_path)
+        
+        # If a file name is provided, ensure its extension matches the desired format
+        if file_name:
+            base_name, ext = os.path.splitext(file_name)
+            if ext != correct_extension:
+                file_name = f"{base_name}{correct_extension}"
+        else:
+            # If no file name is provided, use a default name with the correct extension
+            file_name = default_file_name
+        
+        # Combine the directory and sanitized file name
+        output_path = os.path.join(directory, file_name)
+        
+        return output_path
+
 
     @validate_call
     def generate_data(
@@ -37,7 +73,7 @@ class JobsAPI:
         requirements: List[str],
         output_path: str,
         number_of_samples: int = Field(..., gt=0, lt=1000), 
-        output_type: Literal["csv"] = "csv",
+        output_type: JobOutputFormats = "csv",
     ) -> SuccessResponse[None]:
         """
         Generates data based on the provided schema definition, examples, and requirements.
@@ -59,6 +95,9 @@ class JobsAPI:
             expected format.
         """
         
+        # Sanitize the output path
+        output_path = self._sanitize_output_path(output_path, output_type)
+        
         # Validate that each example conforms to the schema definition
         for example in examples:
             if set(example.keys()) != set(schema_definition.keys()):
@@ -72,6 +111,9 @@ class JobsAPI:
         }
         
         response = self._client.post_stream(f"{CREATE_JOB_WITH_SAMPLES_ENDPOINT}", data=data)
+        
+        # Create the output directory if it doesn't exist
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
         
         for line in response.iter_lines(decode_unicode=True):
             # Strip "data: " prefix automatically added by the SSE and parse the JSON.

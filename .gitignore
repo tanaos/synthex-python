@@ -17,6 +17,7 @@ __pycache__/
 test_data/
 .coverage
 htmlcov/
+test.py
 
 # Distribution / packaging
 build/
