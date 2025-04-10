@@ -13,7 +13,7 @@ We welcome contributions of any kind, **both in the form of [new issues](https:/
 
 2. You visit the [Issues Tab](https://github.com/tanaos/synthex-python/issues) and **look for a known issue you are interested in working on**. Simple issues, perfect for developers who have never / very seldom contributed to open source code, are marked with a badge. Once you have found an issue that you like, indicate that you will be working on it by either assigning it to yourself or stating so in the comments.
 
-## How To Contribute  New Code
+## How To Contribute New Code
 
 Direct pushes to the `master` branch are not permitted. In order to contribute new code, please **follow the standard fork --> push --> pull request workflow**:
 
