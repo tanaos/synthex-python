@@ -12,8 +12,6 @@ def test_promotional(synthex: Synthex):
     returns an object of type `CreditModel`.
     Args:
         synthex (Synthex): An instance of the `Synthex` class.
-    Asserts:
-        The returned value from `synthex.credits.promotional()` is an instance of `CreditModel`.
     """
     
     credits_info = synthex.credits.promotional()

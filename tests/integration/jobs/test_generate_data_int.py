@@ -18,9 +18,6 @@ def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any,
     2. Ensures the header of the generated CSV file matches the expected schema.
     Args:
         synthex (Synthex): An instance of the `Synthex` class used to generate data.
-    Output:
-        - A CSV file is generated at the specified output path with the required
-          structure and content.
     """
     
     output_path = generate_data_params["output_path"]
@@ -47,8 +44,7 @@ def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any,
                 f"CSV header does not match. Expected: {expected_header}, Found: {header}"
     finally:   
         # Clean up the generated file after the test
-        pass
-        #os.remove(output_path)
+        os.remove(output_path)
         
         
 @pytest.mark.integration
@@ -63,9 +59,6 @@ def test_generate_data_schema_definition_validation_error(
     Args:
         synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
         generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
-    Raises:
-        pytest.fail: If the `ValidationError` is not raised as expected, the test will fail 
-        with an appropriate error message.
     """
     
     try:
@@ -102,9 +95,6 @@ def test_generate_data_examples_validation_error(
     Args:
         synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
         generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
-    Raises:
-        pytest.fail: If the `ValidationError` is not raised as expected, the test will fail 
-        with an appropriate error message.
     """
     
     try:
@@ -134,9 +124,6 @@ def test_generate_data_requirements_validation_error(
     Args:
         synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
         generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
-    Raises:
-        pytest.fail: If the `ValidationError` is not raised as expected, the test will fail 
-        with an appropriate error message.
     """
     
     try:
@@ -166,9 +153,6 @@ def test_generate_data_num_of_samples_validation_error(
     Args:
         synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
         generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
-    Raises:
-        pytest.fail: If the `ValidationError` is not raised as expected, the test will fail 
-        with an appropriate error message.
     """
     
     try:
@@ -198,9 +182,6 @@ def test_generate_data_output_type_validation_error(
     Args:
         synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
         generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
-    Raises:
-        pytest.fail: If the `ValidationError` is not raised as expected, the test will fail 
-        with an appropriate error message.
     """
     
     try:
@@ -230,9 +211,6 @@ def test_generate_data_output_path_validation_error(
     Args:
         synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
         generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
-    Raises:
-        pytest.fail: If the `ValidationError` is not raised as expected, the test will fail 
-        with an appropriate error message.
     """
     
     try:

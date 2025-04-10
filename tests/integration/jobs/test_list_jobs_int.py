@@ -12,9 +12,6 @@ def test_list_jobs(synthex: Synthex):
     instance of `ListJobsResponseModel`.
     Args:
         synthex (Synthex): An instance of the `Synthex` class.
-    Asserts:
-        The returned value from `synthex.jobs.list()` is an instance of 
-        `ListJobsResponseModel`.
     """
     
     jobs_info = synthex.jobs.list()

@@ -11,8 +11,6 @@ def test_ping(synthex: Synthex):
     that the `Synthex` instance is functioning as expected.
     Args:
         synthex (Synthex): An instance of the `Synthex` class to be tested.
-    Asserts:
-        The `ping` method of the `Synthex` instance returns `True`.
     """
     
     assert synthex.ping() is True, "Ping failed, Synthex instance is not functioning as expected."

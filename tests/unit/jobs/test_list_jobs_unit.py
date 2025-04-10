@@ -17,10 +17,9 @@ def test_list_jobs_success(synthex: Synthex):
     - The response is of the expected type (`ListJobsResponseModel`).
     - The total number of jobs matches the expected value.
     - The attributes of the first job in the list (name, description, datapoint_num) match the expected values.
-    Assertions:
-    - The response object is of type `ListJobsResponseModel`.
-    - The total number of jobs is 1.
-    - The name, description, and datapoint_num of the first job match the expected values.
+    Args:
+        synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
+        generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
     """
     
     responses.add(
@@ -64,10 +63,9 @@ def test_list_jobs_no_jobs_success(synthex: Synthex):
     - The response is of the expected type (`ListJobsResponseModel`).
     - The total number of jobs is 0.
     - The jobs list is empty.
-    Assertions:
-    - The response object is of type `ListJobsResponseModel`.
-    - The total number of jobs is 0.
-    - The jobs list is empty.
+    Args:
+        synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
+        generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
     """
     
     responses.add(
@@ -105,9 +103,6 @@ def test_list_jobs_401_failure(synthex: Synthex):
     4. If the error is not raised, the test fails with an appropriate message.
     Args:
         synthex (Synthex): An instance of the Synthex client.
-    Asserts:
-    - An `AuthenticationError` is raised when the API returns a 401 status code.
-    - If the error is not raised, the test fails with an assertion error.
     """
     
     responses.add(

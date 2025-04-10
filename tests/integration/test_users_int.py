@@ -12,9 +12,6 @@ def test_me(synthex: Synthex):
     returns an object of type `UserResponseModel`.
     Args:
         synthex (Synthex): An instance of the Synthex client.
-    Assertions:
-        Asserts that the type of the object returned by `synthex.users.me()`
-        is `UserResponseModel`.
     """
     
     user_info = synthex.users.me()

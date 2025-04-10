@@ -113,19 +113,16 @@ class JobsAPI:
         response = self._client.post_stream(f"{CREATE_JOB_WITH_SAMPLES_ENDPOINT}", data=data)
         
         # Create the output directory if it doesn't exist
-        print("CREATING FILE")
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        # Print the content of the parent directory for debugging purposes
-        print("Parent directory content:", os.listdir("test_data"))
-        print("CREATED FILE")
         
         for line in response.iter_lines(decode_unicode=True):
-            # Strip "data: " prefix automatically added by the SSE and parse the JSON.
+            # Strip "data: " prefix automatically added by the SSE.
             if line and line.startswith("data: "):
                 raw = line[6:].strip()
+                # Parse JSON.
                 parsed_data = json.loads(raw)
+                # Write it into a file. The type of file depends on the 'output_type' parameter.
                 if output_type == "csv":
-                    # Write to a .csv file.
                     with open(output_path, mode="w", newline="", encoding="utf-8") as f:
                         # Write column names.
                         writer = csv.DictWriter(f, fieldnames=parsed_data[0].keys())

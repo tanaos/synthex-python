@@ -101,10 +101,6 @@ def test_me_404_failure(synthex: Synthex):
     This test simulates a scenario where the API returns a 404 response for the
     "me" endpoint. It ensures that the `synthex.users.me()` method
     raises a `NotFoundError` exception when the endpoint is not found.
-    Steps:
-    1. Mock the API response for the GET request to return a 404 status code with
-       an appropriate error message.
-    2. Verify that calling `synthex.users.me()` raises the expected `NotFoundError`.
     Args:
         synthex (Synthex): An instance of the Synthex client to test.
     """

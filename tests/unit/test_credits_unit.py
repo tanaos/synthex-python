@@ -13,17 +13,9 @@ def test_promotional_success(synthex: Synthex):
     This test verifies that the `promotional` method of the `credits` module
     in the `Synthex` class correctly retrieves promotional credit information
     from the API and maps it to a `CreditModel` instance.
-    Steps:
-    1. Mock the API response for the promotional credits endpoint with a
-        successful response containing credit details.
-    2. Call the `promotional` method of the `credits` module.
-    3. Assert that the returned object is an instance of `CreditModel`.
-    4. Assert that the `amount` and `currency` attributes of the returned
-        object match the mocked response.
-    Assertions:
-    - The returned object is an instance of `CreditModel`.
-    - The `amount` is 100.
-    - The `currency` is "USD".
+    Args:
+        synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
+        generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
     """
      
     responses.add(
@@ -56,15 +48,8 @@ def test_promotional_401_failure(synthex: Synthex):
     This test simulates an unauthorized API response by mocking the GET request
     to the promotional credits endpoint. It ensures that the `promotional` method
     raises an `AuthenticationError` when the API returns a 401 status code.
-    Steps:
-    1. Mock the API response to return a 401 status code with an appropriate
-       error message.
-    2. Assert that calling the `promotional` method raises the expected
-       `AuthenticationError`.
     Args:
         synthex (Synthex): An instance of the Synthex class to test.
-    Raises:
-        AuthenticationError: Expected to be raised when the API returns a 401 error.
     """
     
     responses.add(
@@ -90,13 +75,9 @@ def test_promotional_404_failure(synthex: Synthex):
     promotional credits returns a 404 status code. It verifies that the
     `synthex.credits.promotional()` method raises a `NotFoundError` exception
     in response to the error.
-    Steps:
-    1. Mock the API response to return a 404 status code with an appropriate
-       error message.
-    2. Assert that calling the `promotional` method raises the expected
-       `NotFoundError`.
     Args:
-        synthex (Synthex): The Synthex instance being tested.
+        synthex (Synthex): An instance of the Synthex class used to invoke the `generate_data` method.
+        generate_data_params (dict[Any, Any]): A dictionary containing the required parameters 
     """
     
     responses.add(

@@ -46,8 +46,6 @@ def test_ping_failure(synthex: Synthex):
     Setup:
         - Mock the HTTP GET request to the `PING_ENDPOINT` using the `responses` library.
         - Configure the mock to return a 500 status code with a failure message.
-    Assertions:
-        - Assert that the `ping` method returns `False` when the server responds with a 500 error.
     """
     
     
