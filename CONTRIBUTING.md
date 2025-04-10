@@ -5,10 +5,11 @@ This project is in its early stages, and we welcome ideas, issues, and pull requ
 
 ## What To Contribute On
 
-We welcome contributions of any kind. Typical contributions are done in one of two ways:
+We welcome contributions of any kind, both in the form of [new issues](https://github.com/tanaos/synthex-python/issues) and new code. Typical contributions are done in one of two ways:
 
-1. After using the library, you come across an issue or come up with a possible improvement, so you contribute new code which addresses the shortcoming.
-2. You visit the [Issues Tab](https://github.com/tanaos/synthex-python/issues), find a known issue you are interested in working on. Simple issues, perfect for developers who have never / very seldom contributed to open source code, are marked with a badge.
+1. When using the library you come across a problem or come up with a possible improvement. Now you have two options:
+    1.1 so you contribute new code which addresses the shortcoming.
+2. You visit the [Issues Tab](https://github.com/tanaos/synthex-python/issues) and look for a known issue you are interested in working on. Simple issues, perfect for developers who have never / very seldom contributed to open source code, are marked with a badge.
 
 ## How To Contribute
 
