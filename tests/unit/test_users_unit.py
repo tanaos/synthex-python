@@ -8,6 +8,7 @@ from synthex.models import UserResponseModel
 from synthex.exceptions import NotFoundError, AuthenticationError
 
 
+@pytest.mark.unit
 @responses.activate
 def test_me_success(synthex: Synthex, ):
     """
@@ -65,7 +66,8 @@ def test_me_success(synthex: Synthex, ):
         "User promo credit granted date does not match the expected value."
     assert user.is_verified is True, "User verification status does not match the expected value."
     
-    
+
+@pytest.mark.unit
 @responses.activate
 def test_me_401_failure(synthex: Synthex):
     """
@@ -94,6 +96,7 @@ def test_me_401_failure(synthex: Synthex):
         pytest.fail("Expected AuthenticationError when API returns 401")
 
 
+@pytest.mark.unit
 @responses.activate
 def test_me_404_failure(synthex: Synthex):
     """

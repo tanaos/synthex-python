@@ -12,6 +12,7 @@
 - Added pull_request_template.md
 - Added sanitation logic for the `output_path` parameter of `Jobs.generate_data()`
 - Added unit tests for `Jobs.generate_data()`
+- Added unit tests for `Synthex.__init__()`
 
 ### Changes
 

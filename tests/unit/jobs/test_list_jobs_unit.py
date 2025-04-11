@@ -8,6 +8,7 @@ from synthex.models import ListJobsResponseModel
 from synthex.exceptions import AuthenticationError
 
 
+@pytest.mark.unit
 @responses.activate
 def test_list_jobs_success(synthex: Synthex):
     """
@@ -54,6 +55,7 @@ def test_list_jobs_success(synthex: Synthex):
     assert jobs_info.jobs[0].datapoint_num == 10, "Job datapoint_num is not 10."
     
 
+@pytest.mark.unit
 @responses.activate
 def test_list_jobs_no_jobs_success(synthex: Synthex):
     """
@@ -89,7 +91,8 @@ def test_list_jobs_no_jobs_success(synthex: Synthex):
     assert jobs_info.total == 0, "Total jobs count is not 0."
     assert jobs_info.jobs == [], "Jobs list is not empty."
     
-    
+
+@pytest.mark.unit
 @responses.activate
 def test_list_jobs_401_failure(synthex: Synthex):
     """

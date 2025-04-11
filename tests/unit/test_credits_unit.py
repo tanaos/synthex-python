@@ -7,6 +7,7 @@ from synthex.models import CreditModel
 from synthex.exceptions import NotFoundError, AuthenticationError
 
 
+@pytest.mark.unit
 @responses.activate
 def test_promotional_success(synthex: Synthex):
     """
@@ -39,7 +40,8 @@ def test_promotional_success(synthex: Synthex):
     assert credits_info.amount== 100, "Promotional credits amount is not 100."
     assert credits_info.currency == "USD", "Promotional credits currency is not USD."
     
-    
+
+@pytest.mark.unit 
 @responses.activate
 def test_promotional_401_failure(synthex: Synthex):
     """
@@ -66,6 +68,7 @@ def test_promotional_401_failure(synthex: Synthex):
         pytest.fail("Expected AuthenticationError to be raised, but it wasn't.")
 
 
+@pytest.mark.unit
 @responses.activate
 def test_promotional_404_failure(synthex: Synthex):
     """

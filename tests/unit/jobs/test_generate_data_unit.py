@@ -15,6 +15,7 @@ json_body="data: [{\"question\": \"What is the enthalpy change for the combustio
     \"-750 kJ/mol\", \"answer\": \"option-a\"}]\n\n"
 
 
+@pytest.mark.unit
 @responses.activate
 def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any, Any]):
     """
@@ -62,8 +63,9 @@ def test_generate_data_success(synthex: Synthex, generate_data_params: dict[Any,
     finally:   
         # Clean up the generated file after the test
         os.remove(output_path)
-        
-        
+
+
+@pytest.mark.unit
 @responses.activate
 def test_generate_data_output_type_extension_mismatch(
     synthex: Synthex, generate_data_params: dict[Any, Any]
@@ -117,6 +119,7 @@ def test_generate_data_output_type_extension_mismatch(
         os.remove(correct_output_path)
 
 
+@pytest.mark.unit
 @responses.activate
 def test_generate_data_output_path_extensionless_file(
     synthex: Synthex, generate_data_params: dict[Any, Any]
@@ -170,6 +173,7 @@ def test_generate_data_output_path_extensionless_file(
         os.remove(correct_output_path)
 
 
+@pytest.mark.unit
 @responses.activate
 def test_generate_data_output_path_no_filename(
     synthex: Synthex, generate_data_params: dict[Any, Any]
@@ -221,6 +225,7 @@ def test_generate_data_output_path_no_filename(
         os.remove(correct_output_path)
         
 
+@pytest.mark.unit
 def test_generate_data_schema_definition_wrong_type(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -257,6 +262,7 @@ def test_generate_data_schema_definition_wrong_type(
         pytest.fail("Expected ValidationError when an incorrect schema_definition is provided")
 
 
+@pytest.mark.unit
 def test_generate_data_examples_wrong_type(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -284,8 +290,9 @@ def test_generate_data_examples_wrong_type(
             )
     except AssertionError:
         pytest.fail("Expected ValidationError when an incorrect examples argument is provided")
-        
-        
+
+
+@pytest.mark.unit
 def test_generate_data_examples_schema_definition_mismatch(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -323,8 +330,9 @@ def test_generate_data_examples_schema_definition_mismatch(
             "Expected ValidationError when the examples argument is inconsistent with \
             the schema_definition argument"
         )
-        
 
+
+@pytest.mark.unit
 def test_generate_data_requirements_wrong_type(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -354,6 +362,7 @@ def test_generate_data_requirements_wrong_type(
         pytest.fail("Expected ValidationError when an incorrect requirements argument is provided")
         
 
+@pytest.mark.unit
 def test_generate_data_num_of_samples_wrong_type(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -383,6 +392,7 @@ def test_generate_data_num_of_samples_wrong_type(
             is provided")
         
 
+@pytest.mark.unit
 def test_generate_data_num_of_samples_value_too_high(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -410,7 +420,8 @@ def test_generate_data_num_of_samples_value_too_high(
         pytest.fail("Expected ValidationError when an incorrect number_of_samples argument \
             is provided")
         
-
+        
+@pytest.mark.unit
 def test_generate_data_output_type_wrong_type(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
@@ -438,6 +449,7 @@ def test_generate_data_output_type_wrong_type(
         pytest.fail("Expected ValidationError when an incorrect output_type argument is provided")
         
 
+@pytest.mark.unit
 def test_generate_data_output_path_wrong_type(
     synthex: Synthex, generate_data_params: dict[Any, Any]
 ):
