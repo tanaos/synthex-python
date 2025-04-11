@@ -67,7 +67,6 @@ jobs:
   publish:
     name: Publish to PyPI
     runs-on: ubuntu-latest
-    needs: build
     if: github.event_name == 'release'
 
     permissions:
