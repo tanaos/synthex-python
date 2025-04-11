@@ -63,9 +63,9 @@ client.jobs.generate_data(
     schema_definition, # Your output dataset's schema
     examples, # A few sample output datapoints
     requirements, # The requirements for your data generation job
+    output_path # The path for the generated dataset
     number_of_samples, # How many datapoints you want in your output dataset
     output_type, # The format of your output dataset
-    output_path # The path for the generated dataset
 )
 ```
 
@@ -136,8 +136,8 @@ where the parameters are as follows:
     ]
     ```
 
+- `output_path`: a string which specifies the path where the output dataset will be generated. It does not need to contain a file name, as this will be added automatically if one is not provided. If `output_path` does contain a file name, its extension must be consistent with the `output_type` parameter. If this is the case, the provided `output_path` is used in its entirety. Otherwise, the provided extension is replaced with one that is consistent with `output_type`.
+
 - `number_of_samples`: an integer which specifies the number of datapoints that the model should generate. Keep in mind that the maximum number of datapoints you can generate with a single job depends on whether you are on a free or paid plan.
 
 - `output_type`: a string which specifies the format of the output dataset. Only `"csv"` (meaning a .csv file will be generated) is supported at this time, but we will soon add more options.
-
-- `output_path`: a string which specifies the path where the output dataset will be generated. It does not need to contain a file name, as this will be added automatically if one is not provided. If `output_path` does contain a file name, its extension must be consistent with the `output_type` parameter. If this is the case, the provided `output_path` is used in its entirety. Otherwise, the provided extension is replaced with one that is consistent with `output_type`.
