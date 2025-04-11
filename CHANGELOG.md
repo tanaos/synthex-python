@@ -16,8 +16,8 @@
 ### Changes
 
 - Updated README.md
-- Changed name of most test files
-
+- Updated name of most test files
+- Updated python-publish.yml to include a 'run tests' step
 
 ### Removals
 
