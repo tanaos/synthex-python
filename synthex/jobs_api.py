@@ -71,7 +71,7 @@ class JobsAPI:
         examples: List[dict[Any, Any]], 
         requirements: List[str],
         output_path: str,
-        number_of_samples: int = Field(..., gt=0, lt=1000), 
+        number_of_samples: int = Field(..., gt=0, le=1000), 
         output_type: JobOutputFormats = "csv",
     ) -> SuccessResponse[None]:
         """
