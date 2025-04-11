@@ -30,6 +30,10 @@ jobs:
           pip install -r requirements.txt
           pip install pytest build
 
+      - name: Create .env file
+        run: |
+          echo "API_KEY=${{ secrets.SYNTHEX_API_KEY }}" > .env
+
       - name: Run tests
         run: pytest
 
