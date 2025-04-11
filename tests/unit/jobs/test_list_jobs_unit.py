@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from synthex import Synthex
 from synthex.endpoints import API_BASE_URL, LIST_JOBS_ENDPOINT
 from synthex.models import ListJobsResponseModel
-from synthex.exceptions import AuthenticationError, ConfigurationError
+from synthex.exceptions import AuthenticationError
 
 
 @pytest.mark.unit
@@ -116,7 +116,7 @@ def test_list_jobs_401_failure(synthex: Synthex):
     )
 
     try:
-        with pytest.raises(ConfigurationError):
+        with pytest.raises(AuthenticationError):
             synthex.jobs.list()
     except AssertionError:
         pytest.fail("Expected AuthenticationError when API returns 401")    
