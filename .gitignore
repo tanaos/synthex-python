@@ -23,3 +23,6 @@ test.py
 build/
 dist/
 *.egg-info/
+
+# Version info
+__version__.py
