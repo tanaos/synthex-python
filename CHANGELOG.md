@@ -1,4 +1,4 @@
-## Release v0.1.6 - April 10, 2025
+## Release v0.1.6 - April 11, 2025
 
 ### Additions
 
@@ -17,3 +17,8 @@
 
 - Updated README.md
 - Changed name of most test files
+
+
+### Removals
+
+- Removed `main.py`
